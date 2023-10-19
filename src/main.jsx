@@ -7,6 +7,7 @@ import { ErrorPage } from './routes/error-page';
 import Contact from './routes/contact';
 import { loader as contactLoader } from './routes/contact';
 import EditContact, { action as editAction} from './routes/contact-edit';
+import { deleteContactAction} from './routes/contact-delete';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
         element: <EditContact />,
         loader: contactLoader,
         action: editAction
+      },
+      {
+        path: "/contacts/:contactId/destroy",
+        action: deleteContactAction,
+        errorElement: <h4>Oops! There was an error.</h4>
       },
     ]
   },
