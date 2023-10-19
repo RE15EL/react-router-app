@@ -1,3 +1,5 @@
+import { Outlet } from 'react-router-dom'
+
 export function Root() {
     return (
       <>
@@ -37,7 +39,9 @@ export function Root() {
             </ul>
           </nav>
         </div>
-        <div id="detail"></div>
+        <div id="detail">
+          <Outlet />
+        </div>
       </>
     );
   }
