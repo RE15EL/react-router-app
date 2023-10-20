@@ -1,8 +1,39 @@
-# React + Vite
+# Rutas con JSX
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+import {
+  createRoutesFromElements,
+  createBrowserRouter,
+  Route,
+} from "react-router-dom";
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<Root />}
+      loader={rootLoader}
+      action={rootAction}
+      errorElement={<ErrorPage />}
+    >
+      <Route errorElement={<ErrorPage />}>
+        <Route index element={<Index />} />
+        <Route
+          path="contacts/:contactId"
+          element={<Contact />}
+          loader={contactLoader}
+          action={contactAction}
+        />
+        <Route
+          path="contacts/:contactId/edit"
+          element={<EditContact />}
+          loader={contactLoader}
+          action={editAction}
+        />
+        <Route
+          path="contacts/:contactId/destroy"
+          action={destroyAction}
+        />
+      </Route>
+    </Route>
+  )
+);
